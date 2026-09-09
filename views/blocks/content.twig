@@ -1,0 +1,6 @@
+<section id="{{ block_id }}" class="{{ block_classes }} section section--{{ fields.background|default('white') }}">
+  <div class="container split split--top">
+    <div>{% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}<h2>{{ fields.heading|default('Add a section heading') }}</h2></div>
+    <div class="prose">{{ function('wp_kses_post', fields.content|default('<p>Add the approved section content here.</p>'))|raw }}</div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+{% set items = fields.items|default([
+  {title: 'Otology', description: 'Specialist assessment and treatment for conditions affecting the ear.'},
+  {title: 'Rhinology', description: 'Specialist assessment and treatment for nasal and sinus conditions.'},
+  {title: 'Laryngology', description: 'Specialist care for voice, airway and swallowing concerns.'}
+]) %}
+<section id="{{ block_id }}" class="{{ block_classes }} section">
+  <div class="container">
+    {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}
+    <h2>{{ fields.heading|default('Comprehensive ENT care') }}</h2>
+    {% if fields.intro %}<p class="lede">{{ fields.intro }}</p>{% endif %}
+    <div class="card-grid">
+      {% for item in items %}
+        <article class="card" x-data="cardsBlock" x-intersect.once="reveal()" :class="{ 'is-reveal-ready': ready, 'is-visible': shown }">
+          <span class="card__number">{{ '%02d'|format(loop.index) }}</span><h3>{{ item.title }}</h3>
+          {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+          {% if item.link %}<a href="{{ item.link.url }}" target="{{ item.link.target|default('_self') }}">{{ item.link.title }} <span aria-hidden="true">→</span></a>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

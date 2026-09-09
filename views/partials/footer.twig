@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><p class="brand brand--footer"><span class="brand__mark">ENT</span><span>{{ site.name }}</span></p><p>Specialist ear, nose and throat care in Zimbabwe.</p></div>
+    <div><h2>Contact</h2><p><a href="tel:{{ site_options.primary_phone|replace({' ': ''}) }}">{{ site_options.primary_phone|default('+263 242 704002') }}</a><br><a href="mailto:{{ site_options.email|default('info@theentgroup.co.zw') }}">{{ site_options.email|default('info@theentgroup.co.zw') }}</a></p></div>
+    <div><h2>Opening hours</h2><p>{{ site_options.opening_hours|default('Monday–Friday, 8:00–17:00') }}</p></div>
+  </div>
+  <div class="container site-footer__legal">© {{ 'now'|date('Y') }} {{ site.name }}</div>
+</footer>

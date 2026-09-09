@@ -1,0 +1,15 @@
+{% set doctors = fields.doctors|default([
+  {name: 'Dr Clemence Chidziva', role: 'ENT Specialist', bio: 'Approved profile and credentials to follow.'},
+  {name: 'Dr Erasmas Muganda', role: 'ENT Specialist', bio: 'Approved profile and credentials to follow.'},
+  {name: 'Dr Naboth Matinhira', role: 'ENT Specialist', bio: 'Approved profile and credentials to follow.'}
+]) %}
+<section id="{{ block_id }}" class="{{ block_classes }} section section--tint"><div class="container">
+  {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}<h2>{{ fields.heading|default('Meet the doctors') }}</h2>
+  <div class="doctor-grid">{% for doctor in doctors %}{% set portrait = doctor.image ? get_image(doctor.image) : null %}
+    <article class="doctor" x-data="doctorsBlock" x-intersect.once="reveal()" :class="{ 'is-reveal-ready': ready, 'is-visible': shown }">
+      <div class="doctor__image">{% if portrait %}<img src="{{ portrait.src('medium_large') }}" width="{{ portrait.width }}" height="{{ portrait.height }}" alt="{{ portrait.alt }}">{% else %}<span>Portrait</span>{% endif %}</div>
+      <h3>{{ doctor.name }}</h3>{% if doctor.role %}<p class="doctor__role">{{ doctor.role }}</p>{% endif %}{% if doctor.bio %}<p>{{ doctor.bio }}</p>{% endif %}
+      {% if doctor.link %}<a href="{{ doctor.link.url }}" target="{{ doctor.link.target|default('_self') }}">{{ doctor.link.title }} <span aria-hidden="true">→</span></a>{% endif %}
+    </article>
+  {% endfor %}</div>
+</div></section>

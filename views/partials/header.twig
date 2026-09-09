@@ -1,0 +1,24 @@
+<header class="site-header" x-data="{ open: false }">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ site.url }}" aria-label="{{ site.name }} home">
+      {% if site.custom_logo %}
+        <img src="{{ get_image(site.custom_logo).src }}" alt="{{ site.name }}">
+      {% else %}
+        <span class="brand__mark" aria-hidden="true">ENT</span><span>{{ site.name }}</span>
+      {% endif %}
+    </a>
+    <button class="nav-toggle" type="button" @click="open = !open" :aria-expanded="open" aria-controls="primary-nav">
+      <span class="sr-only">Toggle navigation</span><span aria-hidden="true">Menu</span>
+    </button>
+    <nav id="primary-nav" class="primary-nav" :class="{ 'is-open': open }" aria-label="Primary navigation">
+      <ul>
+        {% for item in primary_menu.items %}
+          <li><a href="{{ item.link }}" class="{{ item.current ? 'is-current' }}">{{ item.title }}</a></li>
+        {% else %}
+          <li><a href="{{ site.url }}">Home</a></li><li><a href="{{ site.url }}/about/">About us</a></li>
+        {% endfor %}
+      </ul>
+      <a class="button button--small" href="{{ site_options.booking_url|default('https://appointment.theentgroup.co.zw') }}">Book a consultation</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "entgroup/doctors",
+  "version": "1.0.0",
+  "title": "ENT Doctors",
+  "category": "entgroup",
+  "icon": "groups",
+  "description": "Profiles for The ENT Group specialists.",
+  "textdomain": "entgroup",
+  "style": "entgroup-block-doctors-style",
+  "supports": { "anchor": true, "align": ["wide", "full"], "html": false },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php",
+    "fields": [
+      { "label": "Eyebrow", "name": "eyebrow", "type": "text", "default_value": "Our specialists" },
+      { "label": "Heading", "name": "heading", "type": "text", "default_value": "Meet the doctors" },
+      {
+        "label": "Doctors", "name": "doctors", "type": "repeater", "layout": "block", "min": 1, "max": 6, "button_label": "Add doctor",
+        "sub_fields": [
+          { "label": "Name", "name": "name", "type": "text", "required": 1 },
+          { "label": "Role or specialty", "name": "role", "type": "text" },
+          { "label": "Biography", "name": "bio", "type": "textarea", "rows": 4 },
+          { "label": "Portrait", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium" },
+          { "label": "Profile link", "name": "link", "type": "link", "return_format": "array" }
+        ]
+      }
+    ]
+  }
+}

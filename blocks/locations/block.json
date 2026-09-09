@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "entgroup/locations",
+  "version": "1.0.0",
+  "title": "ENT Locations",
+  "category": "entgroup",
+  "icon": "location-alt",
+  "description": "Clinic locations and contact details.",
+  "textdomain": "entgroup",
+  "style": "entgroup-block-locations-style",
+  "supports": { "anchor": true, "align": ["wide", "full"], "html": false },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php",
+    "fields": [
+      { "label": "Eyebrow", "name": "eyebrow", "type": "text", "default_value": "Our locations" },
+      { "label": "Heading", "name": "heading", "type": "text", "default_value": "Four clinics, one standard of care" },
+      {
+        "label": "Locations", "name": "locations", "type": "repeater", "layout": "block", "min": 1, "max": 8, "button_label": "Add location",
+        "sub_fields": [
+          { "label": "Name", "name": "name", "type": "text", "required": 1 },
+          { "label": "Address", "name": "address", "type": "textarea", "rows": 2 },
+          { "label": "Phone", "name": "phone", "type": "text" },
+          { "label": "Map link", "name": "map_link", "type": "url" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{% set action = fields.action %}
+<section id="{{ block_id }}" class="{{ block_classes }} section">
+  <div class="container cta">
+    <div>
+      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}
+      <h2>{{ fields.heading|default('Your health is our top priority') }}</h2>
+      {% if fields.description %}<p>{{ fields.description }}</p>{% endif %}
+    </div>
+    {% if action %}
+      <a class="button button--light" href="{{ action.url }}" target="{{ action.target|default('_self') }}">{{ action.title }}</a>
+    {% else %}
+      <a class="button button--light" href="{{ site_options.booking_url|default('https://appointment.theentgroup.co.zw') }}">Book a consultation</a>
+    {% endif %}
+  </div>
+</section>

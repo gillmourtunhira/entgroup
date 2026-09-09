@@ -1,0 +1,10 @@
+{% set locations = fields.locations|default([
+  {name: 'Harare Main Centre', address: '93 Baines Avenue, Harare'},
+  {name: 'Borrowdale', address: '10 Malcolm Road, Borrowdale'},
+  {name: 'Chitungwiza', address: 'Suite 2, CitiMed Hospital'},
+  {name: 'Mutare', address: '7th Avenue Surgical Unit'}
+]) %}
+<section id="{{ block_id }}" class="{{ block_classes }} section"><div class="container">
+  {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}<h2>{{ fields.heading|default('Four clinics, one standard of care') }}</h2>
+  <div class="location-grid">{% for location in locations %}<article class="location"><h3>{{ location.name }}</h3>{% if location.address %}<p>{{ location.address|nl2br }}</p>{% endif %}{% if location.phone %}<p><a href="tel:{{ location.phone|replace({' ': '', '-': ''}) }}">{{ location.phone }}</a></p>{% endif %}{% if location.map_link %}<a class="text-link" href="{{ location.map_link }}">View map <span aria-hidden="true">→</span></a>{% endif %}</article>{% endfor %}</div>
+</div></section>

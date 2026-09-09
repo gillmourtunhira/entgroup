@@ -1,0 +1,21 @@
+{% set heading = fields.heading|default('Expert care for your ear, nose and throat health') %}
+{% set intro = fields.intro|default('Experienced specialists, thorough diagnosis and modern treatment across convenient locations.') %}
+{% set image = fields.image ? get_image(fields.image) : null %}
+<section id="{{ block_id }}" class="{{ block_classes }} hero">
+  <div class="container hero__grid">
+    <div class="hero__content" x-data="heroBlock" x-intersect.once="reveal()" :class="{ 'is-reveal-ready': ready, 'is-visible': shown }">
+      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}
+      <h1>{{ heading }}</h1>
+      {% if intro %}<p class="lede">{{ intro }}</p>{% endif %}
+      {% if fields.primary_action or fields.secondary_action %}
+        <div class="button-row">
+          {% if fields.primary_action %}<a class="button" href="{{ fields.primary_action.url }}" target="{{ fields.primary_action.target|default('_self') }}">{{ fields.primary_action.title }}</a>{% endif %}
+          {% if fields.secondary_action %}<a class="text-link" href="{{ fields.secondary_action.url }}" target="{{ fields.secondary_action.target|default('_self') }}">{{ fields.secondary_action.title }} <span aria-hidden="true">→</span></a>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="hero__media">
+      {% if image %}<img src="{{ image.src('large') }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}">{% else %}<span>Clinic photography</span>{% endif %}
+    </div>
+  </div>
+</section>

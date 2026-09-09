@@ -1,0 +1,2 @@
+{% extends 'base.twig' %}
+{% block content %}<section class="section"><div class="container"><h1>{{ title|default('Latest updates') }}</h1>{% for post in posts %}<article><h2><a href="{{ post.link }}">{{ post.title }}</a></h2></article>{% endfor %}</div></section>{% endblock %}

@@ -1,0 +1,19 @@
+.ent-block--locations {
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 3rem;
+    background: var(--line);
+  }
+
+  .location { padding: 2rem; background: var(--paper); }
+}
+
+@media (max-width: 800px) {
+  .ent-block--locations .location-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 540px) {
+  .ent-block--locations .location-grid { grid-template-columns: 1fr; }
+}

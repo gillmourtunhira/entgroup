@@ -1,0 +1,19 @@
+{
+  "name": "theentgroup/entgroup-theme",
+  "description": "Custom WordPress theme for The ENT Group.",
+  "type": "wordpress-theme",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.2",
+    "timber/timber": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "EntGroup\\": "src/php/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}

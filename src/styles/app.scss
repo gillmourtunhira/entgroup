@@ -1,0 +1,56 @@
+@use 'settings/tokens';
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--font-sans); line-height: 1.65; }
+body, button, a { -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-underline-offset: .2em; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { color: var(--navy); font-family: var(--font-display); line-height: 1.08; letter-spacing: -.025em; }
+h1 { max-width: 13ch; font-size: clamp(2.75rem, 7vw, 5.75rem); }
+h2 { max-width: 18ch; font-size: clamp(2rem, 4vw, 3.5rem); }
+h3 { font-size: 1.35rem; }
+[x-cloak] { display: none !important; }
+.container { width: min(100% - 2rem, 76rem); margin-inline: auto; }
+.section { padding-block: clamp(4.5rem, 9vw, 8rem); }
+.section--tint { background: var(--mist); }
+.section--white { background: var(--paper); }
+.eyebrow { margin-bottom: 1rem; color: var(--teal); font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.lede { max-width: 39rem; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.3rem); }
+.skip-link { position: fixed; z-index: 100; top: 1rem; left: 1rem; padding: .75rem 1rem; background: var(--navy); color: white; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+.site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.94); }
+.site-header__inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 2rem; }
+.brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--navy); font-weight: 800; text-decoration: none; }
+.brand__mark { display: grid; width: 2.7rem; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--teal); color: white; font-size: .72rem; letter-spacing: .05em; }
+.primary-nav, .primary-nav ul { display: flex; align-items: center; gap: 1.6rem; }
+.primary-nav ul { margin: 0; padding: 0; list-style: none; }
+.primary-nav a { font-weight: 700; text-decoration: none; }
+.primary-nav a:hover, .primary-nav a:focus-visible { color: var(--teal); }
+.nav-toggle { display: none; border: 0; background: none; font: inherit; font-weight: 800; }
+.button { display: inline-flex; min-height: 3.2rem; align-items: center; justify-content: center; padding: .75rem 1.3rem; border-radius: 999px; background: var(--teal); color: white; font-weight: 800; text-decoration: none; transition: background-color .2s ease, transform .2s ease; }
+.button:hover { background: var(--navy); transform: translateY(-2px); }
+.button--small { min-height: 2.7rem; }
+.button--light { background: white; color: var(--navy); }
+.button-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; margin-top: 2rem; }
+.text-link { color: var(--teal); font-weight: 800; }
+.site-footer { padding-top: 4rem; background: var(--navy); color: rgba(255,255,255,.72); }
+.site-footer h2 { color: white; font: 800 .76rem var(--font-sans); letter-spacing: .12em; text-transform: uppercase; }
+.brand--footer { color: white; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+.site-footer__legal { margin-top: 3rem; padding-block: 1.5rem; border-top: 1px solid rgba(255,255,255,.14); font-size: .85rem; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+@media (max-width: 800px) {
+  .nav-toggle { display: block; }
+  .primary-nav { display: none; position: absolute; top: 100%; right: 1rem; left: 1rem; align-items: stretch; padding: 1.5rem; border: 1px solid var(--line); background: white; box-shadow: var(--shadow); }
+  .primary-nav.is-open, .primary-nav ul { display: flex; flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 540px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

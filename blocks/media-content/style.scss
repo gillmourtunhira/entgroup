@@ -1,0 +1,11 @@
+.ent-block--media-content {
+  .media-content { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(3rem, 8vw, 7rem); }
+  .media-content--reverse .media-content__copy { order: 2; }
+  .media-content__image { display: grid; min-height: 28rem; place-items: center; overflow: hidden; border-radius: 1.25rem; background: var(--mint); color: var(--teal); font-weight: 800; }
+  .media-content__image img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+@media (max-width: 800px) {
+  .ent-block--media-content .media-content { grid-template-columns: 1fr; }
+  .ent-block--media-content .media-content--reverse .media-content__copy { order: initial; }
+}

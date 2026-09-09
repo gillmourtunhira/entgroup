@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "entgroup/cards",
+  "version": "1.0.0",
+  "title": "ENT Cards",
+  "category": "entgroup",
+  "icon": "grid-view",
+  "description": "A responsive collection of services or benefits.",
+  "textdomain": "entgroup",
+  "style": "entgroup-block-cards-style",
+  "supports": { "anchor": true, "align": ["wide", "full"], "html": false },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php",
+    "fields": [
+      { "label": "Eyebrow", "name": "eyebrow", "type": "text" },
+      { "label": "Heading", "name": "heading", "type": "text", "required": 1 },
+      { "label": "Introduction", "name": "intro", "type": "textarea", "rows": 3 },
+      {
+        "label": "Cards", "name": "items", "type": "repeater", "layout": "block", "min": 1, "max": 8, "button_label": "Add card",
+        "sub_fields": [
+          { "label": "Title", "name": "title", "type": "text", "required": 1 },
+          { "label": "Description", "name": "description", "type": "textarea", "rows": 3 },
+          { "label": "Link", "name": "link", "type": "link", "return_format": "array" }
+        ]
+      }
+    ]
+  }
+}

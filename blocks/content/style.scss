@@ -1,0 +1,10 @@
+.ent-block--content .split {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: start;
+  gap: clamp(3rem, 8vw, 7rem);
+}
+
+@media (max-width: 800px) {
+  .ent-block--content .split { grid-template-columns: 1fr; }
+}

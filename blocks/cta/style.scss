@@ -1,0 +1,18 @@
+.ent-block--cta {
+  .cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(2rem, 6vw, 5rem);
+    border-radius: 1.5rem;
+    background: var(--navy);
+  }
+
+  .cta h2, .cta .eyebrow { color: white; }
+  .cta p { color: rgba(255, 255, 255, .76); }
+}
+
+@media (max-width: 800px) {
+  .ent-block--cta .cta { align-items: flex-start; flex-direction: column; }
+}

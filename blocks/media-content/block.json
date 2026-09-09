@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "entgroup/media-content",
+  "version": "1.0.0",
+  "title": "ENT Media and Content",
+  "category": "entgroup",
+  "icon": "align-pull-left",
+  "description": "Image alongside editorial content.",
+  "textdomain": "entgroup",
+  "style": "entgroup-block-media-content-style",
+  "supports": { "anchor": true, "align": ["wide", "full"], "html": false },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php",
+    "fields": [
+      { "label": "Eyebrow", "name": "eyebrow", "type": "text" },
+      { "label": "Heading", "name": "heading", "type": "text", "required": 1 },
+      { "label": "Content", "name": "content", "type": "wysiwyg", "media_upload": 0, "required": 1 },
+      { "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium" },
+      { "label": "Image position", "name": "image_position", "type": "button_group", "choices": { "left": "Left", "right": "Right" }, "default_value": "right" },
+      { "label": "Link", "name": "link", "type": "link", "return_format": "array" },
+      { "label": "Background", "name": "background", "type": "select", "choices": { "white": "White", "tint": "Light tint" }, "default_value": "white" }
+    ]
+  }
+}

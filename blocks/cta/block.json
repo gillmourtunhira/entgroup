@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "entgroup/cta",
+  "version": "1.0.0",
+  "title": "ENT Call to Action",
+  "category": "entgroup",
+  "icon": "megaphone",
+  "description": "A prominent consultation or contact prompt.",
+  "textdomain": "entgroup",
+  "style": "entgroup-block-cta-style",
+  "supports": { "anchor": true, "align": ["wide", "full"], "html": false },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php",
+    "fields": [
+      { "label": "Eyebrow", "name": "eyebrow", "type": "text", "default_value": "We’re here to help" },
+      { "label": "Heading", "name": "heading", "type": "text", "required": 1, "default_value": "Your health is our top priority" },
+      { "label": "Description", "name": "description", "type": "textarea", "rows": 2 },
+      { "label": "Action", "name": "action", "type": "link", "return_format": "array" }
+    ]
+  }
+}

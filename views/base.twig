@@ -1,0 +1,15 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+<head>
+  <meta charset="{{ site.charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ function('wp_head') }}
+</head>
+<body class="{{ body_class }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include 'partials/header.twig' %}
+  <main id="main">{% block content %}{% endblock %}</main>
+  {% include 'partials/footer.twig' %}
+  {{ function('wp_footer') }}
+</body>
+</html>
