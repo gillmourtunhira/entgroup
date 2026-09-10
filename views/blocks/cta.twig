@@ -9,7 +9,7 @@
     {% if action %}
       <a class="button button--light" href="{{ action.url }}" target="{{ action.target|default('_self') }}">{{ action.title }}</a>
     {% else %}
-      <a class="button button--light" href="{{ site_options.booking_url|default('https://appointment.theentgroup.co.zw') }}">Book a consultation</a>
+      <a class="button button--light" href="{{ site_options.booking_url|default(function('home_url', '/#booking')) }}">Book a consultation</a>
     {% endif %}
   </div>
 </section>

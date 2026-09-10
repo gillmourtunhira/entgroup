@@ -15,6 +15,7 @@ final class Theme
 
         add_action('after_setup_theme', [self::class, 'setup']);
         add_action('init', [Blocks::class, 'register']);
+        Bookings::boot();
         add_action('init', [Blocks::class, 'registerPatternCategory']);
         add_filter('block_categories_all', [Blocks::class, 'categories']);
         add_action('wp_enqueue_scripts', [Assets::class, 'enqueue']);

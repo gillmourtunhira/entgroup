@@ -12,3 +12,4 @@
 <!-- wp:entgroup/doctors /-->
 <!-- wp:entgroup/locations /-->
 <!-- wp:entgroup/cta /-->
+<!-- wp:entgroup/booking /-->

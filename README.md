@@ -43,6 +43,40 @@ define('ENTGROUP_VITE_DEV_SERVER', 'http://localhost:5173');
 
 Do not define the development server in staging or production. Those environments use the generated Vite manifest in `dist/.vite/manifest.json`.
 
+## Hero carousel and bookings
+
+The hero's original fields are retained as slide one. Add further slides under
+**Additional slides** in the SCF block settings. Navigation is manual; there is
+automatic rotation only when the **Autoplay** checkbox is enabled (six seconds
+per slide). Autoplay pauses on hover, keyboard focus, and hidden browser tabs;
+it is disabled for reduced-motion preferences. A Play/Pause control is available.
+In the editor all slides are shown, without Alpine.
+
+Insert **ENT Booking Request** into the homepage (the starter patterns now
+include it). Link appointment buttons to that page's `#booking` anchor. Existing
+pages and explicitly configured booking links are not overwritten by code
+updates.
+
+Requests appear under **Bookings** for administrators. Records are private,
+excluded from public queries and REST, and contain contact details, service,
+preferred clinic, preferred date, an optional message (up to 2,000 characters),
+contact consent time, and review status. Service and clinic choices are defined
+once in `Bookings::services()` and `Bookings::clinics()` and validated on submission.
+Older records display “Not provided” for these new fields. Staff must contact the patient;
+submission never reserves a slot or sends a confirmation email. No notifications
+are configured yet, so staff need to check this screen.
+
+The handler validates the nonce, contact details, date and consent, uses a
+honeypot, and limits repeated requests per email for five minutes. Exclude pages
+containing the form from full-page caching so form nonces stay fresh.
+Decide the operational retention period and staff access before public launch.
+
+The booking registration currently resides in `src/php/Bookings.php`; switching
+themes hides its admin interface but does not delete saved records. Move that
+class and its hooks to a site plugin when deploying independently of this theme.
+
+Run `php tests/booking-handler.php` for isolated handler checks.
+
 ## Content status
 
 Photography, logo, addresses, biographies, credentials and claims are placeholders until approved by The ENT Group.

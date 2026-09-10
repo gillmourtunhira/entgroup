@@ -1,21 +1,32 @@
-{% set heading = fields.heading|default('Expert care for your ear, nose and throat health') %}
-{% set intro = fields.intro|default('Experienced specialists, thorough diagnosis and modern treatment across convenient locations.') %}
-{% set image = fields.image ? get_image(fields.image) : null %}
-<section id="{{ block_id }}" class="{{ block_classes }} hero">
-  <div class="container hero__grid">
-    <div class="hero__content" x-data="heroBlock" x-intersect.once="reveal()" :class="{ 'is-reveal-ready': ready, 'is-visible': shown }">
-      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}
-      <h1>{{ heading }}</h1>
-      {% if intro %}<p class="lede">{{ intro }}</p>{% endif %}
-      {% if fields.primary_action or fields.secondary_action %}
-        <div class="button-row">
-          {% if fields.primary_action %}<a class="button" href="{{ fields.primary_action.url }}" target="{{ fields.primary_action.target|default('_self') }}">{{ fields.primary_action.title }}</a>{% endif %}
-          {% if fields.secondary_action %}<a class="text-link" href="{{ fields.secondary_action.url }}" target="{{ fields.secondary_action.target|default('_self') }}">{{ fields.secondary_action.title }} <span aria-hidden="true">→</span></a>{% endif %}
+{% set slides = [fields]|merge(fields.slides|default([])) %}
+<section id="{{ block_id|e('html_attr') }}" class="{{ block_classes|e('html_attr') }} hero" {% if not is_preview %}x-data="heroBlock({{ slides|length }}, {{ fields.autoplay ? 'true' : 'false' }})" @mouseenter="hovered = true; sync()" @mouseleave="hovered = false; sync()" @focusin="focused = true; sync()" @focusout="focused = $el.contains($event.relatedTarget); sync()" @visibilitychange.document="sync()"{% endif %} aria-label="Specialist care" aria-roledescription="carousel">
+  <div class="hero__stage">
+    {% for slide in slides %}
+      {% set image = slide.image ? get_image(slide.image) : null %}
+      <article class="hero__slide" {% if not is_preview %}x-show="active === {{ loop.index0 }}" x-transition.opacity.duration.400ms{% endif %} {% if not loop.first and not is_preview %}style="display:none"{% endif %} role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ slides|length }}">
+        {% if image %}<img class="hero__background" src="{{ image.src('full')|e('html_attr') }}" srcset="{{ image.srcset|e('html_attr') }}" sizes="100vw" width="{{ image.width }}" height="{{ image.height }}" alt="" {% if loop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}>{% endif %}
+        <div class="hero__veil"></div>
+        <div class="container hero__layout">
+          <div class="hero__content">
+            {% if slide.eyebrow %}<p class="eyebrow"><span class="hero__dash" aria-hidden="true"></span>{{ slide.eyebrow|e }}</p>{% endif %}
+            {% if loop.first %}<h1>{{ slide.heading|default('Expert care. A personal approach.')|e }}</h1>{% else %}<h2 class="hero__heading">{{ slide.heading|e }}</h2>{% endif %}
+            {% if slide.intro %}<p class="lede">{{ slide.intro|e }}</p>{% endif %}
+            <div class="button-row">
+              {% if slide.primary_action %}<a class="button" href="{{ function('esc_url', slide.primary_action.url) }}" target="{{ slide.primary_action.target|default('_self')|e('html_attr') }}" rel="noopener">{{ slide.primary_action.title|e }} <span aria-hidden="true">↗</span></a>{% else %}<a class="button" href="{{ function('home_url', '/#booking')|e('html_attr') }}">Request an appointment <span aria-hidden="true">↗</span></a>{% endif %}
+              {% if slide.secondary_action %}<a class="hero__secondary" href="{{ function('esc_url', slide.secondary_action.url) }}" target="{{ slide.secondary_action.target|default('_self')|e('html_attr') }}" rel="noopener">{{ slide.secondary_action.title|e }} <span aria-hidden="true">→</span></a>{% endif %}
+            </div>
+          </div>
         </div>
-      {% endif %}
-    </div>
-    <div class="hero__media">
-      {% if image %}<img src="{{ image.src('large') }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}">{% else %}<span>Clinic photography</span>{% endif %}
+      </article>
+    {% endfor %}
+  </div>
+  {% if slides|length > 1 and not is_preview %}
+  <div class="container hero__controls" x-cloak>
+    <div class="hero__dots" aria-label="Choose slide">{% for slide in slides %}<button type="button" @click="go({{ loop.index0 }})" :aria-pressed="active === {{ loop.index0 }}" :class="{ 'is-active': active === {{ loop.index0 }} }" aria-label="Show slide {{ loop.index }}"><span></span></button>{% endfor %}</div>
+    <div class="hero__arrows">
+      {% if fields.autoplay %}<button class="hero__playback" type="button" x-show="!reducedMotion" @click="togglePlayback()" :aria-label="paused ? 'Resume slideshow' : 'Pause slideshow'" x-text="paused ? 'Play' : 'Pause'"></button>{% endif %}
+      <span class="hero__counter" :aria-live="timer !== null ? 'off' : 'polite'" x-text="(active + 1) + ' / ' + count"></span><button type="button" @click="go(active - 1)" aria-label="Previous slide">←</button><button type="button" @click="go(active + 1)" aria-label="Next slide">→</button>
     </div>
   </div>
+  {% endif %}
 </section>

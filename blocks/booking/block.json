@@ -1,0 +1,18 @@
+{
+  "apiVersion": 3,
+  "name": "entgroup/booking",
+  "title": "ENT Booking Request",
+  "category": "entgroup",
+  "icon": "calendar-alt",
+  "style": "entgroup-block-booking-style",
+  "supports": { "html": false, "multiple": false },
+  "acf": {
+    "blockVersion": 3,
+    "mode": "preview",
+    "renderTemplate": "render.php",
+    "fields": [
+      { "name": "heading", "label": "Heading", "type": "text", "default_value": "Let’s find a time for your care" },
+      { "name": "intro", "label": "Introduction", "type": "textarea", "default_value": "Leave your contact details and preferred date. Our team will contact you to discuss availability." }
+    ]
+  }
+}

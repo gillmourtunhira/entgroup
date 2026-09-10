@@ -3,7 +3,7 @@
   .doctor { padding: 2rem; border: 1px solid var(--line); border-radius: 1rem; background: white; transition: opacity .6s ease, transform .6s ease; }
   .doctor.is-reveal-ready { opacity: 0; transform: translateY(1.25rem); }
   .doctor.is-visible { opacity: 1; transform: none; }
-  .doctor__image { display: grid; min-height: 18rem; margin: -1rem -1rem 1.5rem; place-items: center; overflow: hidden; border-radius: .7rem; background: var(--mint); color: var(--teal); font-weight: 800; }
+  .doctor__image { display: grid; max-height: 300px; margin: -1rem -1rem 1.5rem; place-items: center; overflow: hidden; border-radius: .7rem; background: var(--mint); color: var(--teal); font-weight: 800; }
   .doctor__image img { width: 100%; height: 100%; object-fit: cover; }
   .doctor__role { color: var(--teal); font-weight: 800; }
 }

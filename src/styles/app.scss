@@ -7,7 +7,7 @@ body, button, a { -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-underline-offset: .2em; }
 h1, h2, h3, p { margin-top: 0; }
-h1, h2, h3 { color: var(--navy); font-family: var(--font-display); line-height: 1.08; letter-spacing: -.025em; }
+h1, h2, h3 { color: var(--navy); font-family: var(--font-sans); line-height: 1.08; letter-spacing: -.025em; }
 h1 { max-width: 13ch; font-size: clamp(2.75rem, 7vw, 5.75rem); }
 h2 { max-width: 18ch; font-size: clamp(2rem, 4vw, 3.5rem); }
 h3 { font-size: 1.35rem; }

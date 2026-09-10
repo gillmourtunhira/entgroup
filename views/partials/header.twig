@@ -18,7 +18,7 @@
           <li><a href="{{ site.url }}">Home</a></li><li><a href="{{ site.url }}/about/">About us</a></li>
         {% endfor %}
       </ul>
-      <a class="button button--small" href="{{ site_options.booking_url|default('https://appointment.theentgroup.co.zw') }}">Book a consultation</a>
+      <a class="button button--small" href="{{ site_options.booking_url|default(function('home_url', '/#booking')) }}">Book a consultation</a>
     </nav>
   </div>
 </header>

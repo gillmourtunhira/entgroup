@@ -1,0 +1,32 @@
+<section id="booking" class="{{ block_classes|e('html_attr') }} section">
+  <div class="container booking__layout">
+    <div class="booking__copy"><p class="eyebrow">Request an appointment</p><h2>{{ fields.heading|default('Let’s find a time for your care')|e }}</h2><p class="lede">{{ fields.intro|default('Leave your contact details and preferred date. Our team will contact you to discuss availability.')|e }}</p><p>Choose the service and clinic that suit you. Our team will contact you to confirm availability.</p><p>Submitting this form does not confirm an appointment.</p>
+    {% if booking_feedback %}<p class="booking__feedback" id="booking-feedback" role="status">{{ booking_feedback|e }}</p>{% endif %}
+    </div>
+    <form class="booking__form" method="post" action="{{ function('admin_url', 'admin-post.php')|e('html_attr') }}">
+      <h3>Request your consultation</h3>
+      <p class="booking__form-intro">Tell us how we can help you arrange your visit.</p>
+      <fieldset {% if is_preview %}disabled{% endif %}>
+      <legend class="sr-only">Appointment request details</legend>
+      <input type="hidden" name="action" value="entgroup_booking">
+      <input type="hidden" name="booking_nonce" value="{{ function('wp_create_nonce', 'entgroup_booking')|e('html_attr') }}">
+      <input type="hidden" name="return_url" value="{{ function('get_permalink')|e('html_attr') }}">
+      <div class="booking__trap" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label for="{{ block_id }}-name">Full name<input id="{{ block_id }}-name" name="patient_name" autocomplete="name" maxlength="120" required></label>
+      <div class="booking__row">
+      <label for="{{ block_id }}-email">Email<input id="{{ block_id }}-email" type="email" name="email" autocomplete="email" maxlength="254" required></label>
+      <label for="{{ block_id }}-phone">Phone<input id="{{ block_id }}-phone" type="tel" name="phone" autocomplete="tel" maxlength="30" required></label>
+      </div>
+      <div class="booking__row">
+      <label for="{{ block_id }}-service">Service<select id="{{ block_id }}-service" name="service" required><option value="">Select a service</option>{% for value, label in booking_services %}<option value="{{ value|e('html_attr') }}">{{ label|e }}</option>{% endfor %}</select></label>
+      <label for="{{ block_id }}-clinic">Preferred clinic<select id="{{ block_id }}-clinic" name="clinic" required><option value="">Select a clinic</option>{% for value, label in booking_clinics %}<option value="{{ value|e('html_attr') }}">{{ label|e }}</option>{% endfor %}</select></label>
+      </div>
+      <label for="{{ block_id }}-date">Preferred date<input id="{{ block_id }}-date" type="date" name="preferred_date" min="{{ function('current_time', 'Y-m-d') }}" required></label>
+      <label for="{{ block_id }}-message">Message <span class="booking__optional">(optional)</span><textarea id="{{ block_id }}-message" name="message" rows="4" maxlength="2000" aria-describedby="{{ block_id }}-message-help" placeholder="Anything we should know about arranging your visit?"></textarea></label>
+      <p class="booking__help" id="{{ block_id }}-message-help">Up to 2,000 characters. Please avoid including sensitive medical information.</p>
+      <label class="booking__consent"><input type="checkbox" name="consent" value="yes" required> I agree that The ENT Group may use these details to contact me about this appointment request.</label>
+      <button class="button" type="submit">Send appointment request ↗</button>
+      </fieldset>
+    </form>
+  </div>
+</section>
