@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "entgroup/testimonials",
+    "version": "1.0.0",
+    "title": "ENT Testimonials",
+    "category": "entgroup",
+    "icon": "format-quote",
+    "description": "A block to display testimonials.",
+    "keywords": ["testimonial","header","stories"],
+    "textdomain": "entgroup",
+    "style": "entgroup-block-testimonials-style",
+    "supports": {
+        "anchor": true,
+        "align": ["wide", "full"],
+        "html": false
+    },
+    "acf": {
+        "blockVersion": 3,
+        "mode": "preview",
+        "renderTemplate": "render.php",
+        "fields": [
+            { "label": "Eyebrow", "name": "eyebrow", "type": "text", "required": true, "default_value": "Patient stories" },
+            { "label": "Heading", "name": "heading", "type": "text", "required": true, "default_value": "Trusted by patients across Zimbabwe" },
+            { "label": "Testimonials", "name": "testimonials", "type": "repeater", "layout": "block", "min": 1, "max": 6, "button_label": "Add Testimonial",
+                "sub_fields": [
+                    { "label": "Quote", "name": "quote", "type": "textarea", "rows": 3, "required": true },
+                    { "label": "Author Name", "name": "author_name", "type": "text", "required": true },
+                    { "label": "Author City", "name": "author_city", "type": "text", "required": true }
+                ]
+            }
+        ]
+    }
+}

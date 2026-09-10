@@ -1,0 +1,27 @@
+.ent-block--testimonials {
+  background: var(--mist);
+  .stories__header { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  h2 { max-width: 22ch; margin-bottom: 0; }
+  .stories__controls { display: flex; flex-shrink: 0; gap: .65rem; }
+  .stories__controls button { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--teal); font: inherit; font-size: 1.4rem; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+  .stories__controls button:hover:not(:disabled) { background: var(--teal); color: white; }
+  .stories__controls button:disabled { opacity: .4; cursor: default; }
+  .stories__track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3rem) / 3); gap: 1.5rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #a3c4be transparent; padding-block: .25rem 1.25rem; }
+  .stories__card { display: flex; flex-direction: column; min-width: 0; margin: 0; padding: clamp(1.5rem, 2.5vw, 2.25rem); border: 1px solid var(--line); border-radius: 1.25rem; background: var(--paper); box-shadow: 0 6px 20px #16353d04; scroll-snap-align: start; }
+  .stories__quote-mark { color: var(--teal); font: 4.5rem/.8 Georgia, serif; margin-top: .6rem; }
+  blockquote { margin: 1rem 0 2rem; flex: 1; color: var(--ink); font-size: 1.05rem; line-height: 1.8; overflow-wrap: anywhere; }
+  blockquote p { margin: 0; }
+  figcaption { display: flex; gap: .85rem; align-items: center; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .stories__avatar { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--mist); color: var(--teal); font-weight: 700; }
+  .stories__author { display: block; color: var(--navy); font-weight: 700; overflow-wrap: anywhere; }
+  .stories__city { display: block; color: var(--muted); font-size: .85rem; }
+  .stories__empty { padding: 2rem; border: 1px dashed var(--line); border-radius: 1rem; background: white; }
+}
+@media (max-width: 1000px) { .ent-block--testimonials .stories__track { grid-auto-columns: calc((100% - 1.5rem) / 2); } }
+@media (max-width: 640px) {
+  .ent-block--testimonials {
+    .stories__header { align-items: flex-start; flex-direction: column; gap: 1.5rem; }
+    .stories__track { grid-auto-columns: 88%; gap: 1rem; }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .ent-block--testimonials .stories__track { scroll-behavior: auto; } }

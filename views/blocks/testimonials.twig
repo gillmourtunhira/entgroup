@@ -1,0 +1,35 @@
+{% set stories = fields.testimonials|default([]) %}
+{% if stories|length or is_preview %}
+<section id="{{ block_id|e('html_attr') }}" class="{{ block_classes|e('html_attr') }} section" aria-labelledby="{{ block_id|e('html_attr') }}-heading" {% if not is_preview %}x-data="testimonials"{% endif %}>
+  <div class="container">
+    <div class="stories__header">
+      <div>
+        <p class="eyebrow">{{ fields.eyebrow|default('Patient stories')|e }}</p>
+        <h2 id="{{ block_id|e('html_attr') }}-heading">{{ fields.heading|default('Trusted by patients across Zimbabwe')|e }}</h2>
+      </div>
+      {% if stories|length > 1 and not is_preview %}
+      <div class="stories__controls" x-cloak x-show="hasOverflow" role="group" aria-label="Patient stories navigation">
+        <button type="button" @click="prev()" :disabled="atStart" aria-label="Previous patient stories" aria-controls="{{ block_id|e('html_attr') }}-track"><span aria-hidden="true">←</span></button>
+        <button type="button" @click="next()" :disabled="atEnd" aria-label="Next patient stories" aria-controls="{{ block_id|e('html_attr') }}-track"><span aria-hidden="true">→</span></button>
+      </div>
+      {% endif %}
+    </div>
+    {% if stories|length %}
+    <div class="stories__track" id="{{ block_id|e('html_attr') }}-track" tabindex="0" role="region" aria-label="Patient stories, scroll horizontally for more" {% if not is_preview %}x-ref="track" @scroll.passive="sync()" @keydown.right.prevent="next()" @keydown.left.prevent="prev()" @keydown.home.prevent="start()" @keydown.end.prevent="end()"{% endif %}>
+      {% for story in stories %}
+      <figure class="stories__card">
+        <span class="stories__quote-mark" aria-hidden="true">“</span>
+        <blockquote><p>{{ story.quote|e|nl2br }}</p></blockquote>
+        <figcaption>
+          <span class="stories__avatar" aria-hidden="true">{{ story.author_name|slice(0, 1)|upper|e }}</span>
+          <span><span class="stories__author">{{ story.author_name|e }}</span>{% if story.author_city %}<span class="stories__city">{{ story.author_city|e }}</span>{% endif %}</span>
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="stories__empty">Add approved patient stories using the Testimonials fields to preview the cards.</p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

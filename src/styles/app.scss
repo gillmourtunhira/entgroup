@@ -1,7 +1,7 @@
 @use 'settings/tokens';
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 8rem; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--font-sans); line-height: 1.65; }
 body, button, a { -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; height: auto; }
@@ -21,7 +21,22 @@ h3 { font-size: 1.35rem; }
 .skip-link { position: fixed; z-index: 100; top: 1rem; left: 1rem; padding: .75rem 1rem; background: var(--navy); color: white; transform: translateY(-200%); }
 .skip-link:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
-.site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.94); }
+.site-header {
+  position: sticky;
+  top: var(--toolbar-offset, 0px);
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, .65);
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 4px 24px rgba(22, 53, 61, .05);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header {
+    background: rgba(255, 255, 255, .72);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+  }
+}
+.admin-bar { --toolbar-offset: 32px; }
 .site-header__inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 2rem; }
 .brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--navy); font-weight: 800; text-decoration: none; }
 .brand__mark { display: grid; width: 2.7rem; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--teal); color: white; font-size: .72rem; letter-spacing: .05em; }
@@ -44,9 +59,12 @@ h3 { font-size: 1.35rem; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
 @media (max-width: 800px) {
   .nav-toggle { display: block; }
-  .primary-nav { display: none; position: absolute; top: 100%; right: 1rem; left: 1rem; align-items: stretch; padding: 1.5rem; border: 1px solid var(--line); background: white; box-shadow: var(--shadow); }
+  .primary-nav { display: none; position: absolute; top: 100%; right: 1rem; left: 1rem; align-items: stretch; padding: 1.5rem; border: 1px solid var(--line); border-radius: 0 0 1rem 1rem; background: rgba(255,255,255,.97); box-shadow: var(--shadow); max-height: calc(100dvh - 6rem - var(--toolbar-offset, 0px)); overflow-y: auto; }
   .primary-nav.is-open, .primary-nav ul { display: flex; flex-direction: column; align-items: stretch; }
 }
+@media (max-width: 782px) { .admin-bar { --toolbar-offset: 46px; } }
+// WordPress's mobile admin toolbar scrolls away below this breakpoint.
+@media (max-width: 600px) { .admin-bar { --toolbar-offset: 0px; } }
 @media (max-width: 540px) {
   .footer-grid { grid-template-columns: 1fr; }
 }

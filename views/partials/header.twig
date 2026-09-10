@@ -1,4 +1,4 @@
-<header class="site-header" x-data="{ open: false }">
+<header class="site-header" x-data="{ open: false }" @keydown.escape="open = false" @click.outside="open = false">
   <div class="container site-header__inner">
     <a class="brand" href="{{ site.url }}" aria-label="{{ site.name }} home">
       {% if site.custom_logo %}
@@ -10,7 +10,7 @@
     <button class="nav-toggle" type="button" @click="open = !open" :aria-expanded="open" aria-controls="primary-nav">
       <span class="sr-only">Toggle navigation</span><span aria-hidden="true">Menu</span>
     </button>
-    <nav id="primary-nav" class="primary-nav" :class="{ 'is-open': open }" aria-label="Primary navigation">
+    <nav id="primary-nav" class="primary-nav" :class="{ 'is-open': open }" aria-label="Primary navigation" @click="if ($event.target.closest('a')) open = false">
       <ul>
         {% for item in primary_menu.items %}
           <li><a href="{{ item.link }}" class="{{ item.current ? 'is-current' }}">{{ item.title }}</a></li>
