@@ -15,13 +15,17 @@
     "mode": "preview",
     "renderTemplate": "render.php",
     "fields": [
+      { "label": "Heading layout", "name": "heading_layout", "type": "button_group", "choices": { "centered": "Centered", "split": "Heading left / intro right" }, "default_value": "centered" },
       { "label": "Eyebrow", "name": "eyebrow", "type": "text", "default_value": "Our specialists" },
       { "label": "Heading", "name": "heading", "type": "text", "default_value": "Meet the doctors" },
+      { "label": "Introduction", "name": "intro", "type": "textarea", "rows": 3 },
       {
         "label": "Doctors", "name": "doctors", "type": "repeater", "layout": "block", "min": 1, "max": 6, "button_label": "Add doctor",
         "sub_fields": [
           { "label": "Name", "name": "name", "type": "text", "required": 1 },
           { "label": "Role or specialty", "name": "role", "type": "text" },
+          { "label": "Specialty detail", "name": "specialty", "type": "text", "instructions": "Optional focus area displayed below the role." },
+          { "label": "Qualifications", "name": "qualifications", "type": "text", "instructions": "Only include verified, approved qualifications." },
           { "label": "Biography", "name": "bio", "type": "textarea", "rows": 4 },
           { "label": "Portrait", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium" },
           { "label": "Profile link", "name": "link", "type": "link", "return_format": "array" }

@@ -22,6 +22,7 @@
         "label": "Cards", "name": "items", "type": "repeater", "layout": "block", "min": 1, "max": 8, "button_label": "Add card",
         "sub_fields": [
           { "label": "Title", "name": "title", "type": "text", "required": 1 },
+          { "label": "Icon", "name": "icon", "type": "select", "default_value": "auto", "choices": { "auto": "Automatic from title", "ear-listen": "Ear / hearing", "wind": "Nose / breathing", "wave-square": "Throat / voice", "user-doctor": "Specialist", "baby": "Paediatric care", "stethoscope": "Consultation", "heart-pulse": "Heart / care", "shield-heart": "Protection / reassurance" } },
           { "label": "Description", "name": "description", "type": "textarea", "rows": 3 },
           { "label": "Link", "name": "link", "type": "link", "return_format": "array" }
         ]

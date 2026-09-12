@@ -10,10 +10,13 @@
     {% if fields.intro %}<p class="lede">{{ fields.intro }}</p>{% endif %}
     <div class="card-grid">
       {% for item in items %}
+        {% set title_lower = item.title|lower %}
+        {% set inferred_icon = 'otology' in title_lower ? 'ear-listen' : ('rhinology' in title_lower ? 'wind' : ('laryngology' in title_lower ? 'wave-square' : ('paediatric' in title_lower ? 'baby' : 'stethoscope'))) %}
+        {% set icon = item.icon in ['ear-listen', 'wind', 'wave-square', 'user-doctor', 'baby', 'stethoscope', 'heart-pulse', 'shield-heart'] ? item.icon : inferred_icon %}
         <article class="card" x-data="cardsBlock" x-intersect.once="reveal()" :class="{ 'is-reveal-ready': ready, 'is-visible': shown }">
-          <span class="card__number">{{ '%02d'|format(loop.index) }}</span><h3>{{ item.title }}</h3>
+          <span class="ent-icon-tile card__icon"><i class="fa-solid fa-{{ icon }}" aria-hidden="true"></i></span><h3>{{ item.title|e }}</h3>
           {% if item.description %}<p>{{ item.description }}</p>{% endif %}
-          {% if item.link %}<a href="{{ item.link.url }}" target="{{ item.link.target|default('_self') }}">{{ item.link.title }} <span aria-hidden="true">→</span></a>{% endif %}
+          {% if item.link %}<a class="ent-icon-link card__link" href="{{ function('esc_url', item.link.url) }}" target="{{ item.link.target|default('_self')|e('html_attr') }}" rel="noopener">{{ item.link.title|e }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>{% endif %}
         </article>
       {% endfor %}
     </div>

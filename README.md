@@ -77,6 +77,42 @@ class and its hooks to a site plugin when deploying independently of this theme.
 
 Run `php tests/booking-handler.php` for isolated handler checks.
 
+## Icons and block styling
+
+Font Awesome Free solid icons are bundled locally by Vite for both the frontend
+and editor; no external kit or CDN is required. Service cards have an SCF **Icon**
+selector, with automatic specialty icons for existing content. Testimonials have
+an optional **Rating** field: leave it blank unless a patient supplied a rating.
+Booking contact details use the phone and opening hours configured in theme options.
+Block-specific styles remain in `blocks/<slug>/style.scss`.
+
+## About-page blocks
+
+- **Media and Content:** keep Companion content set to Image for the existing
+  layout, or choose Purpose / value cards and add mission, vision or value entries.
+  Each entry has a title, description and Font Awesome icon. Companion position
+  controls the image/card panel side on desktop; mobile shows the copy first.
+- **Doctors:** an optional section introduction and verified qualifications are
+  available alongside the existing portrait, role, biography and profile link.
+- **Call to Action:** uses a centered teal panel with an optional secondary link.
+  Existing primary links and the default booking destination are preserved.
+
+Run `php tests/about-blocks.php` for isolated template checks.
+
+The **ENT About Page** starter pattern uses the reference-style variants:
+
+- Media and Content → **Layout: About intro** for the split H1/image hero,
+  two links and optional approved badge value/label. Use only one H1 per page.
+- Media and Content → **Layout: Purpose** puts the heading left and body copy
+  right, with three compact icon features below the body. It ignores image and
+  companion positioning. Existing Standard layouts remain unchanged.
+- Doctors → **Heading layout: Heading left / intro right**; use Specialty detail
+  for the focus area and the existing link field for a consultation/profile link.
+- CTA → **Layout: Full-width strip**, with Location as the action icon.
+
+Pattern changes apply to new insertions only. Set these options on existing page
+blocks to adopt the layouts; saved page content is not automatically replaced.
+
 ## Content status
 
 Photography, logo, addresses, biographies, credentials and claims are placeholders until approved by The ENT Group.

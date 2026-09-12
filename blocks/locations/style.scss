@@ -2,12 +2,16 @@
   .location-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
+    gap: 1.25rem;
     margin-top: 3rem;
-    background: var(--line);
   }
 
-  .location { padding: 2rem; background: var(--paper); }
+  .location { display: flex; flex-direction: column; min-width: 0; padding: 1.5rem; background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; transition: box-shadow .2s ease; }
+  .location:hover, .location:focus-within { box-shadow: 0 12px 30px #16353d0d; }
+  .location h3 { margin-top: 1.25rem; font-size: 1.2rem; }
+  .location__address { flex: 1; color: var(--muted); font-size: .9rem; }
+  .location__contact { display: grid; gap: .75rem; border-top: 1px solid var(--line); padding-top: 1rem; font-size: .9rem; overflow-wrap: anywhere; }
+  .location__contact a { color: var(--teal); }
 }
 
 @media (max-width: 800px) {

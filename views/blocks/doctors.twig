@@ -3,13 +3,19 @@
   {name: 'Dr Erasmas Muganda', role: 'ENT Specialist', bio: 'Approved profile and credentials to follow.'},
   {name: 'Dr Naboth Matinhira', role: 'ENT Specialist', bio: 'Approved profile and credentials to follow.'}
 ]) %}
-<section id="{{ block_id }}" class="{{ block_classes }} section section--tint"><div class="container">
-  {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}<h2>{{ fields.heading|default('Meet the doctors') }}</h2>
+<section id="{{ block_id|e('html_attr') }}" class="{{ block_classes|e('html_attr') }} section section--tint"><div class="container">
+  <div class="doctors__header {{ fields.heading_layout == 'split' ? 'doctors__header--split' }}"><div>{% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow|e }}</p>{% endif %}<h2>{{ fields.heading|default('Meet the doctors')|e }}</h2></div>
+  {% if fields.intro %}<p class="lede">{{ fields.intro|e }}</p>{% endif %}</div>
   <div class="doctor-grid">{% for doctor in doctors %}{% set portrait = doctor.image ? get_image(doctor.image) : null %}
     <article class="doctor" x-data="doctorsBlock" x-intersect.once="reveal()" :class="{ 'is-reveal-ready': ready, 'is-visible': shown }">
-      <div class="doctor__image">{% if portrait %}<img src="{{ portrait.src('medium_large') }}" width="{{ portrait.width }}" height="{{ portrait.height }}" alt="{{ portrait.alt }}">{% else %}<span>Portrait</span>{% endif %}</div>
-      <h3>{{ doctor.name }}</h3>{% if doctor.role %}<p class="doctor__role">{{ doctor.role }}</p>{% endif %}{% if doctor.bio %}<p>{{ doctor.bio }}</p>{% endif %}
-      {% if doctor.link %}<a href="{{ doctor.link.url }}" target="{{ doctor.link.target|default('_self') }}">{{ doctor.link.title }} <span aria-hidden="true">→</span></a>{% endif %}
+      <div class="doctor__image">{% if portrait %}<img src="{{ portrait.src('medium_large')|e('html_attr') }}" width="{{ portrait.width }}" height="{{ portrait.height }}" alt="{{ portrait.alt|e('html_attr') }}" loading="lazy" decoding="async">{% else %}<span class="doctor__placeholder"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i><span>Portrait to follow</span></span>{% endif %}</div>
+      <div class="doctor__content">
+      <h3>{{ doctor.name|e }}</h3>{% if doctor.role %}<p class="doctor__role">{{ doctor.role|e }}</p>{% endif %}
+      {% if doctor.specialty %}<p class="doctor__specialty">{{ doctor.specialty|e }}</p>{% endif %}
+      {% if doctor.qualifications %}<p class="doctor__qualifications"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> {{ doctor.qualifications|e }}</p>{% endif %}
+      {% if doctor.bio %}<p class="doctor__bio">{{ doctor.bio|e|nl2br }}</p>{% endif %}
+      {% if doctor.link %}<a class="ent-icon-link doctor__link" href="{{ function('esc_url', doctor.link.url) }}" target="{{ doctor.link.target|default('_self')|e('html_attr') }}" rel="noopener">{{ doctor.link.title|e }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span class="sr-only"> — {{ doctor.name|e }}</span></a>{% endif %}
+      </div>
     </article>
   {% endfor %}</div>
 </div></section>

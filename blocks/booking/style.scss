@@ -1,8 +1,15 @@
 .ent-block--booking {
-  background: var(--mist);
+  background: var(--teal);
   .booking__layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
   .booking__copy { max-width: 30rem; }
-  form { padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--line); border-radius: 1.25rem; background: white; box-shadow: 0 18px 60px #16353d0a; }
+  .booking__copy, .booking__copy h2, .booking__copy .lede, .booking__copy .eyebrow { color: white; }
+  .booking__copy > p:not(.booking__feedback) { color: #ffffffe6; }
+  .booking__details { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  .booking__detail { display: flex; gap: 1rem; align-items: center; }
+  .booking__detail .ent-icon-tile { background: #ffffff1a; color: white; }
+  .booking__detail strong { display: block; font-size: .85rem; margin-bottom: .2rem; }
+  .booking__detail a { color: white; text-underline-offset: .2em; }
+  form { padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--line); border-radius: 2rem; background: white; color: var(--ink); box-shadow: 0 18px 60px #16353d26; }
   form h3 { font-size: 1.65rem; margin-bottom: .75rem; }
   .booking__form-intro { color: var(--muted); margin-bottom: 1.75rem; }
   fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
@@ -15,8 +22,8 @@
   input[type="checkbox"] { width: 1.15rem; height: 1.15rem; vertical-align: middle; }
   .booking__consent { font-size: .9rem; font-weight: 400; }
   .booking__trap { position: absolute; left: -10000px; }
-  .booking__feedback { padding: 1rem; border-left: 3px solid var(--teal); background: white; margin-bottom: 2rem; }
-  button { border: 0; cursor: pointer; font: inherit; width: 100%; border-radius: .5rem; font-weight: 700; }
+  .booking__feedback { padding: 1rem; border-left: 3px solid var(--mint); background: white; color: var(--ink); margin-bottom: 2rem; }
+  button { display: flex; justify-content: center; gap: .6rem; align-items: center; border: 0; cursor: pointer; font: inherit; width: 100%; border-radius: 999px; font-weight: 700; }
 }
 @media (max-width: 800px) { .ent-block--booking .booking__layout { grid-template-columns: 1fr; gap: 2rem; } }
 @media (max-width: 540px) { .ent-block--booking .booking__row { grid-template-columns: 1fr; gap: 0; } }

@@ -25,6 +25,7 @@
             { "label": "Testimonials", "name": "testimonials", "type": "repeater", "layout": "block", "min": 1, "max": 6, "button_label": "Add Testimonial",
                 "sub_fields": [
                     { "label": "Quote", "name": "quote", "type": "textarea", "rows": 3, "required": true },
+                    { "label": "Rating (optional)", "name": "rating", "type": "select", "default_value": "", "instructions": "Only show a rating supplied by the patient.", "choices": { "": "No rating", "1": "1 star", "2": "2 stars", "3": "3 stars", "4": "4 stars", "5": "5 stars" } },
                     { "label": "Author Name", "name": "author_name", "type": "text", "required": true },
                     { "label": "Author City", "name": "author_city", "type": "text", "required": true }
                 ]

@@ -1,15 +1,19 @@
 {% set action = fields.action %}
-<section id="{{ block_id }}" class="{{ block_classes }} section">
+{% set icon = fields.action_icon in ['arrow-right', 'location-dot', 'calendar-check'] ? fields.action_icon : 'arrow-right' %}
+<section id="{{ block_id|e('html_attr') }}" class="{{ block_classes|e('html_attr') }} section {{ fields.layout == 'strip' ? 'ent-cta--strip' }}">
   <div class="container cta">
     <div>
-      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}
-      <h2>{{ fields.heading|default('Your health is our top priority') }}</h2>
-      {% if fields.description %}<p>{{ fields.description }}</p>{% endif %}
+      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow|e }}</p>{% endif %}
+      <h2>{{ fields.heading|default('Your health is our top priority')|e }}</h2>
+      {% if fields.description %}<p>{{ fields.description|e }}</p>{% endif %}
     </div>
+    <div class="cta__actions">
     {% if action %}
-      <a class="button button--light" href="{{ action.url }}" target="{{ action.target|default('_self') }}">{{ action.title }}</a>
+      <a class="button button--light" href="{{ function('esc_url', action.url) }}" target="{{ action.target|default('_self')|e('html_attr') }}" rel="noopener">{{ action.title|e }} <i class="fa-solid fa-{{ icon }}" aria-hidden="true"></i></a>
     {% else %}
-      <a class="button button--light" href="{{ site_options.booking_url|default(function('home_url', '/#booking')) }}">Book a consultation</a>
+      <a class="button button--light" href="{{ function('esc_url', site_options.booking_url|default(function('home_url', '/#booking'))) }}"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book a consultation</a>
     {% endif %}
+    {% if fields.secondary_action %}<a class="button cta__secondary" href="{{ function('esc_url', fields.secondary_action.url) }}" target="{{ fields.secondary_action.target|default('_self')|e('html_attr') }}" rel="noopener">{{ fields.secondary_action.title|e }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>{% endif %}
+    </div>
   </div>
 </section>

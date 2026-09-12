@@ -1,0 +1,11 @@
+<div class="media-content__cards">
+  {% for card in fields.purpose_cards|default([]) %}
+  {% set icon = card.icon in ['bullseye', 'eye', 'heart-pulse', 'hand-holding-heart', 'shield-heart', 'users', 'award'] ? card.icon : 'bullseye' %}
+  <article class="purpose-card">
+    <span class="ent-icon-tile"><i class="fa-solid fa-{{ icon }}" aria-hidden="true"></i></span>
+    <div><h3>{{ card.title|e }}</h3>{% if card.description %}<p>{{ card.description|e|nl2br }}</p>{% endif %}</div>
+  </article>
+  {% else %}
+  {% if is_preview %}<p class="media-content__empty">Add purpose cards in the block fields to show your mission, vision or values here.</p>{% endif %}
+  {% endfor %}
+</div>

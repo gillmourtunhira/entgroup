@@ -1,4 +1,6 @@
 @use 'settings/tokens';
+@use '../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css';
+@use '../../node_modules/@fortawesome/fontawesome-free/css/solid.css';
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 8rem; }
@@ -51,6 +53,9 @@ h3 { font-size: 1.35rem; }
 .button--light { background: white; color: var(--navy); }
 .button-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; margin-top: 2rem; }
 .text-link { color: var(--teal); font-weight: 800; }
+.ent-icon-tile { display: inline-grid; place-items: center; flex-shrink: 0; width: 3rem; height: 3rem; border-radius: .8rem; background: var(--mist); color: var(--teal); font-size: 1.2rem; }
+.ent-icon-link { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; }
+.ent-icon-link .fa-solid { font-size: .85em; }
 .site-footer { padding-top: 4rem; background: var(--navy); color: rgba(255,255,255,.72); }
 .site-footer h2 { color: white; font: 800 .76rem var(--font-sans); letter-spacing: .12em; text-transform: uppercase; }
 .brand--footer { color: white; }

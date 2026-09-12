@@ -6,7 +6,7 @@
   "title": "ENT Media and Content",
   "category": "entgroup",
   "icon": "align-pull-left",
-  "description": "Image alongside editorial content.",
+  "description": "Editorial content alongside an image or purpose and value cards.",
   "textdomain": "entgroup",
   "style": "entgroup-block-media-content-style",
   "supports": { "anchor": true, "align": ["wide", "full"], "html": false },
@@ -15,12 +15,22 @@
     "mode": "preview",
     "renderTemplate": "render.php",
     "fields": [
+      { "label": "Layout", "name": "layout", "type": "select", "choices": { "standard": "Standard companion", "purpose": "Purpose — heading left, content and features right", "intro": "About intro — split hero" }, "default_value": "standard", "instructions": "Purpose uses the content and purpose cards without an image. About intro uses an H1: use it only once, at the top of a page without another H1." },
       { "label": "Eyebrow", "name": "eyebrow", "type": "text" },
       { "label": "Heading", "name": "heading", "type": "text", "required": 1 },
       { "label": "Content", "name": "content", "type": "wysiwyg", "media_upload": 0, "required": 1 },
       { "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium" },
-      { "label": "Image position", "name": "image_position", "type": "button_group", "choices": { "left": "Left", "right": "Right" }, "default_value": "right" },
+      { "label": "Companion content", "name": "companion", "type": "button_group", "choices": { "image": "Image", "cards": "Purpose / value cards" }, "default_value": "image" },
+      { "label": "Companion position", "name": "image_position", "type": "button_group", "choices": { "left": "Left", "right": "Right" }, "default_value": "right" },
+      { "label": "Purpose / value cards", "name": "purpose_cards", "type": "repeater", "layout": "block", "max": 6, "button_label": "Add purpose card", "instructions": "Shown in Purpose layout, or Standard layout with the cards companion. Three entries match the About reference. Use approved copy.", "sub_fields": [
+        { "label": "Title", "name": "title", "type": "text", "required": 1 },
+        { "label": "Description", "name": "description", "type": "textarea", "rows": 3 },
+        { "label": "Icon", "name": "icon", "type": "select", "choices": { "bullseye": "Mission / purpose", "eye": "Vision", "heart-pulse": "Care", "hand-holding-heart": "Compassion", "shield-heart": "Trust", "users": "People", "award": "Standards / excellence" }, "default_value": "bullseye" }
+      ] },
       { "label": "Link", "name": "link", "type": "link", "return_format": "array" },
+      { "label": "Secondary intro link", "name": "secondary_link", "type": "link", "return_format": "array", "instructions": "Optional second button for About intro layout." },
+      { "label": "Intro badge value", "name": "badge_value", "type": "text", "instructions": "Optional, approved statistic for the image badge. Leave blank to hide." },
+      { "label": "Intro badge label", "name": "badge_label", "type": "text" },
       { "label": "Background", "name": "background", "type": "select", "choices": { "white": "White", "tint": "Light tint" }, "default_value": "white" }
     ]
   }

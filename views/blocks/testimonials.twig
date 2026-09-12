@@ -9,8 +9,8 @@
       </div>
       {% if stories|length > 1 and not is_preview %}
       <div class="stories__controls" x-cloak x-show="hasOverflow" role="group" aria-label="Patient stories navigation">
-        <button type="button" @click="prev()" :disabled="atStart" aria-label="Previous patient stories" aria-controls="{{ block_id|e('html_attr') }}-track"><span aria-hidden="true">←</span></button>
-        <button type="button" @click="next()" :disabled="atEnd" aria-label="Next patient stories" aria-controls="{{ block_id|e('html_attr') }}-track"><span aria-hidden="true">→</span></button>
+        <button type="button" @click="prev()" :disabled="atStart" aria-label="Previous patient stories" aria-controls="{{ block_id|e('html_attr') }}-track"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+        <button type="button" @click="next()" :disabled="atEnd" aria-label="Next patient stories" aria-controls="{{ block_id|e('html_attr') }}-track"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
       </div>
       {% endif %}
     </div>
@@ -18,7 +18,10 @@
     <div class="stories__track" id="{{ block_id|e('html_attr') }}-track" tabindex="0" role="region" aria-label="Patient stories, scroll horizontally for more" {% if not is_preview %}x-ref="track" @scroll.passive="sync()" @keydown.right.prevent="next()" @keydown.left.prevent="prev()" @keydown.home.prevent="start()" @keydown.end.prevent="end()"{% endif %}>
       {% for story in stories %}
       <figure class="stories__card">
-        <span class="stories__quote-mark" aria-hidden="true">“</span>
+        <span class="stories__quote-mark"><i class="fa-solid fa-quote-left" aria-hidden="true"></i></span>
+        {% if story.rating in ['1', '2', '3', '4', '5'] %}
+        <div class="stories__rating"><span class="sr-only">{{ story.rating }} out of 5 stars</span>{% for star in 1..5 %}<i class="fa-solid fa-star {{ star > story.rating ? 'is-unfilled' }}" aria-hidden="true"></i>{% endfor %}</div>
+        {% endif %}
         <blockquote><p>{{ story.quote|e|nl2br }}</p></blockquote>
         <figcaption>
           <span class="stories__avatar" aria-hidden="true">{{ story.author_name|slice(0, 1)|upper|e }}</span>

@@ -1,12 +1,36 @@
 {% set image = fields.image ? get_image(fields.image) : null %}
-<section id="{{ block_id }}" class="{{ block_classes }} section section--{{ fields.background|default('white') }}">
+{% set cards_mode = fields.companion == 'cards' %}
+{% set intro_mode = fields.layout == 'intro' %}
+{% set purpose_mode = fields.layout == 'purpose' %}
+<section id="{{ block_id|e('html_attr') }}" class="{{ block_classes|e('html_attr') }} section section--{{ fields.background == 'tint' ? 'tint' : 'white' }} {{ intro_mode ? 'ent-media--intro' }} {{ purpose_mode ? 'ent-media--purpose' }}">
+  {% if purpose_mode %}
+  <div class="container purpose-layout">
+    <div>{% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow|e }}</p>{% endif %}<h2>{{ fields.heading|e }}</h2></div>
+    <div class="purpose-layout__body">
+      <div class="prose">{{ function('wp_kses_post', fields.content)|raw }}</div>
+      {% include 'blocks/partials/purpose-cards.twig' %}
+      {% if fields.link %}<a class="text-link ent-icon-link" href="{{ function('esc_url', fields.link.url) }}" target="{{ fields.link.target|default('_self')|e('html_attr') }}" rel="noopener">{{ fields.link.title|e }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>{% endif %}
+    </div>
+  </div>
+  {% else %}
   <div class="container media-content {{ fields.image_position == 'left' ? 'media-content--reverse' }}">
     <div class="media-content__copy">
-      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow }}</p>{% endif %}
-      <h2>{{ fields.heading|default('Specialist knowledge, thoughtfully delivered') }}</h2>
+      {% if fields.eyebrow %}<p class="eyebrow">{{ fields.eyebrow|e }}</p>{% endif %}
+      {% if intro_mode %}<h1>{{ fields.heading|default('Specialist knowledge, thoughtfully delivered')|e }}</h1>{% else %}<h2>{{ fields.heading|default('Specialist knowledge, thoughtfully delivered')|e }}</h2>{% endif %}
       <div class="prose">{{ function('wp_kses_post', fields.content|default('<p>Add approved content for this section.</p>'))|raw }}</div>
-      {% if fields.link %}<a class="text-link" href="{{ fields.link.url }}" target="{{ fields.link.target|default('_self') }}">{{ fields.link.title }} <span aria-hidden="true">→</span></a>{% endif %}
+      <div class="media-content__actions">
+      {% if fields.link %}<a class="{{ intro_mode ? 'button' : 'text-link' }} ent-icon-link" href="{{ function('esc_url', fields.link.url) }}" target="{{ fields.link.target|default('_self')|e('html_attr') }}" rel="noopener">{{ fields.link.title|e }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>{% endif %}
+      {% if intro_mode and fields.secondary_link %}<a class="button media-content__secondary" href="{{ function('esc_url', fields.secondary_link.url) }}" target="{{ fields.secondary_link.target|default('_self')|e('html_attr') }}" rel="noopener">{{ fields.secondary_link.title|e }}</a>{% endif %}
+      </div>
     </div>
-    <div class="media-content__image">{% if image %}<img src="{{ image.src('large') }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}">{% else %}<span>Approved photography</span>{% endif %}</div>
+    {% if cards_mode and not intro_mode %}
+    {% include 'blocks/partials/purpose-cards.twig' %}
+    {% else %}
+    <div class="media-content__visual">
+      <div class="media-content__image">{% if image %}<img src="{{ image.src('large')|e('html_attr') }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt|e('html_attr') }}" loading="{{ intro_mode ? 'eager' : 'lazy' }}" {% if intro_mode %}fetchpriority="high"{% endif %} decoding="async">{% else %}<span><i class="fa-solid fa-image" aria-hidden="true"></i> Approved photography</span>{% endif %}</div>
+      {% if intro_mode and fields.badge_value %}<div class="media-content__badge"><span class="ent-icon-tile"><i class="fa-solid fa-stethoscope" aria-hidden="true"></i></span><div><strong>{{ fields.badge_value|e }}</strong>{% if fields.badge_label %}<span>{{ fields.badge_label|e }}</span>{% endif %}</div></div>{% endif %}
+    </div>
+    {% endif %}
   </div>
+  {% endif %}
 </section>
