@@ -115,6 +115,19 @@ blocks to adopt the layouts; saved page content is not automatically replaced.
 
 ## Content status
 
+### Footer editing
+
+Use **Appearance → Customize → Footer details** for the description, address,
+phone, email and opening hours. Blank values hide their corresponding details.
+Existing SCF contact values remain fallbacks until Customizer values are saved;
+saved Customizer phone, email and hours take precedence in booking contact details
+as well. Booking URL remains under Site details.
+
+Assign menus under **Appearance → Menus → Manage Locations**:
+**Footer — Quick Links** (retains the old footer location) and
+**Footer — Specialties**. No menu or contact content is auto-created.
+Run `php tests/footer.php` for footer template and fallback checks.
+
 Typography follows the Vercel reference: Fraunces for display headings and doctor
 names; Inter for body copy, controls and small feature headings. Variable fonts
 are self-hosted through the Fontsource packages and Vite (unicode subsets, swap

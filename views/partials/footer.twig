@@ -1,8 +1,14 @@
-<footer class="site-footer">
+<footer class="site-footer" id="contact">
   <div class="container footer-grid">
-    <div><p class="brand brand--footer"><span class="brand__mark">ENT</span><span>{{ site.name }}</span></p><p>Specialist ear, nose and throat care in Zimbabwe.</p></div>
-    <div><h2>Contact</h2><p><a href="tel:{{ site_options.primary_phone|replace({' ': ''}) }}">{{ site_options.primary_phone|default('+263 242 704002') }}</a><br><a href="mailto:{{ site_options.email|default('info@theentgroup.co.zw') }}">{{ site_options.email|default('info@theentgroup.co.zw') }}</a></p></div>
-    <div><h2>Opening hours</h2><p>{{ site_options.opening_hours|default('Monday–Friday, 8:00–17:00') }}</p></div>
+    <div class="footer-about"><a class="brand brand--footer" href="{{ site.url|e('html_attr') }}"><span class="brand__mark" aria-hidden="true"><i class="fa-solid fa-ear-listen"></i></span><span>{{ site.name|e }}</span></a>{% if footer_details.description %}<p>{{ footer_details.description|e|nl2br }}</p>{% endif %}</div>
+    <div><h2>Quick Links</h2>{% if footer_menu.items %}<nav aria-label="Footer quick links">{% include 'partials/footer-menu.twig' with {items: footer_menu.items} only %}</nav>{% endif %}</div>
+    <div><h2>Specialties</h2>{% if footer_specialties_menu.items %}<nav aria-label="Footer specialties">{% include 'partials/footer-menu.twig' with {items: footer_specialties_menu.items} only %}</nav>{% endif %}</div>
+    <div><h2>Get in Touch</h2><ul class="footer-contact">
+      {% if footer_details.address %}<li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>{{ footer_details.address|e|nl2br }}</span></li>{% endif %}
+      {% if footer_details.primary_phone %}<li><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="{{ function('esc_url', 'tel:' ~ footer_details.primary_phone|replace({' ': '', '-': '', '(': '', ')': ''})) }}">{{ footer_details.primary_phone|e }}</a></li>{% endif %}
+      {% if footer_details.email %}<li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="{{ function('esc_url', 'mailto:' ~ footer_details.email) }}">{{ footer_details.email|e }}</a></li>{% endif %}
+      {% if footer_details.opening_hours %}<li><i class="fa-solid fa-clock" aria-hidden="true"></i><span>{{ footer_details.opening_hours|e|nl2br }}</span></li>{% endif %}
+    </ul></div>
   </div>
-  <div class="container site-footer__legal">© {{ 'now'|date('Y') }} {{ site.name }}</div>
+  <div class="container site-footer__legal">© {{ 'now'|date('Y') }} {{ site.name|e }}. All rights reserved.</div>
 </footer>

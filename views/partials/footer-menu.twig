@@ -1,0 +1,7 @@
+<ul class="footer-menu">
+  {% for item in items %}
+  <li><a href="{{ function('esc_url', item.link) }}" {% if item.target %}target="{{ item.target|e('html_attr') }}"{% endif %} {% if item.target == '_blank' %}rel="noopener noreferrer"{% endif %} {% if item.current %}aria-current="page"{% endif %}>{{ item.title|e }}</a>
+    {% if item.children %}{% include 'partials/footer-menu.twig' with {items: item.children} only %}{% endif %}
+  </li>
+  {% endfor %}
+</ul>

@@ -20,6 +20,7 @@ final class Theme
         add_filter('block_categories_all', [Blocks::class, 'categories']);
         add_action('wp_enqueue_scripts', [Assets::class, 'enqueue']);
         add_action('acf/init', [Fields::class, 'register']);
+        add_action('customize_register', [Customizer::class, 'register']);
         add_filter('timber/context', [self::class, 'context']);
     }
 
@@ -37,7 +38,8 @@ final class Theme
 
         register_nav_menus([
             'primary' => __('Primary navigation', 'entgroup'),
-            'footer' => __('Footer navigation', 'entgroup'),
+            'footer' => __('Footer — Quick Links', 'entgroup'),
+            'footer_specialties' => __('Footer — Specialties', 'entgroup'),
         ]);
     }
 
@@ -45,7 +47,15 @@ final class Theme
     {
         $context['primary_menu'] = Timber::get_menu('primary');
         $context['footer_menu'] = Timber::get_menu('footer');
+        $context['footer_specialties_menu'] = has_nav_menu('footer_specialties') ? Timber::get_menu('footer_specialties') : null;
+        if (! has_nav_menu('footer')) {
+            $context['footer_menu'] = null;
+        }
         $context['site_options'] = function_exists('get_fields') ? (get_fields('option') ?: []) : [];
+        $context['footer_details'] = Customizer::values($context['site_options']);
+        foreach (['primary_phone', 'email', 'opening_hours'] as $name) {
+            $context['site_options'][$name] = $context['footer_details'][$name];
+        }
         return $context;
     }
 }
