@@ -19,6 +19,18 @@ h2 { max-width: 18ch; font-size: clamp(2rem, 4vw, 3.5rem); }
 h3 { font-size: 1.35rem; }
 [x-cloak] { display: none !important; }
 .container { width: min(100% - 2rem, 76rem); margin-inline: auto; }
+// Native blocks need a constrained parent in this classic Timber template.
+// Custom ENT sections already provide their own inner containers.
+.page-content > :not(.ent-block):not(.alignfull) {
+  max-width: min(calc(100% - 2rem), var(--wp--style--global--content-size, 760px));
+  margin-inline: auto;
+}
+.page-content > .alignwide:not(.ent-block) {
+  max-width: min(calc(100% - 2rem), var(--wp--style--global--wide-size, 1216px));
+}
+.page-content > .alignfull { max-width: none; margin-inline: 0; }
+.page-content > :first-child:not(.ent-block):not(.alignfull) { margin-top: 2rem; }
+.page-content > :last-child:not(.ent-block):not(.alignfull) { margin-bottom: 2rem; }
 .section { padding-block: clamp(3rem, 5vw, 4.5rem); }
 .section h2 { margin-bottom: 1rem; }
 .section--tint { background: var(--mist); }

@@ -1,7 +1,7 @@
 {% extends 'base.twig' %}
 {% block content %}
   {% if post.content %}
-    {{ post.content }}
+    <div class="page-content">{{ post.content }}</div>
   {% else %}
     <article class="section"><div class="container prose"><h1>{{ post.title }}</h1><p>Add one of The ENT Group patterns or insert blocks to build this page.</p></div></article>
   {% endif %}
