@@ -6,7 +6,15 @@
   .hero__slide { grid-area: 1 / 1; position: relative; overflow: hidden; isolation: isolate; }
   .hero__background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; z-index: -2; }
   .hero__veil { position: absolute; inset: 0; background: linear-gradient(90deg, #f3f8f7 0%, rgba(243,248,247,.97) 28%, rgba(243,248,247,.82) 49%, rgba(243,248,247,.12) 85%); z-index: -1; }
-  .hero__layout { min-height: clamp(38rem, 76vh, 52rem); display: flex; align-items: center; padding-block: 6rem 8rem; }
+  .hero__layout {
+    // Stable viewport height avoids jumps as mobile browser controls show/hide.
+    // A minimum (not fixed height) lets long copy and zoomed text expand safely.
+    min-height: calc(100vh - var(--site-header-height, 81px) - var(--hero-toolbar-height, 0px));
+    min-height: calc(100svh - var(--site-header-height, 81px) - var(--hero-toolbar-height, 0px));
+    display: flex;
+    align-items: center;
+    padding-block: clamp(1.5rem, 4vh, 3rem) 6rem;
+  }
   .hero__content { width: min(100%, 43rem); }
   .eyebrow { display: flex; align-items: center; gap: .85rem; }
   .hero__dash { width: 2rem; height: 2px; background: currentColor; }
@@ -24,9 +32,11 @@
   .hero__controls .hero__playback { border-radius: 2rem; padding-inline: .75rem; font-size: .8rem; }
 }
 .editor-styles-wrapper .ent-block--hero .hero__slide { grid-area: auto; }
+.admin-bar .ent-block--hero { --hero-toolbar-height: 32px; }
+@media (max-width: 782px) { .admin-bar .ent-block--hero { --hero-toolbar-height: 46px; } }
 @media (max-width: 700px) {
   .ent-block--hero {
-    .hero__layout { min-height: 40rem; padding-block: 4rem 7rem; }
+    .hero__layout { padding-block: 1.5rem 6rem; }
     .hero__veil { background: linear-gradient(90deg, rgba(243,248,247,.98), rgba(243,248,247,.86)); }
     .hero__background { object-position: 65% center; }
     .hero__controls { bottom: 1.5rem; }
