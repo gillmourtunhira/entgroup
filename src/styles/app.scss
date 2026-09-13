@@ -1,4 +1,7 @@
 @use 'settings/tokens';
+@use '../../node_modules/@fontsource-variable/inter/standard.css' as inter;
+@use '../../node_modules/@fontsource-variable/inter/standard-italic.css';
+@use '../../node_modules/@fontsource-variable/fraunces/standard.css' as fraunces;
 @use '../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css';
 @use '../../node_modules/@fortawesome/fontawesome-free/css/solid.css';
 
@@ -10,15 +13,17 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-underline-offset: .2em; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { color: var(--navy); font-family: var(--font-sans); line-height: 1.08; letter-spacing: -.025em; }
+h1, h2 { font-family: var(--font-display); font-weight: 600; }
 h1 { max-width: 13ch; font-size: clamp(2.75rem, 7vw, 5.75rem); }
 h2 { max-width: 18ch; font-size: clamp(2rem, 4vw, 3.5rem); }
 h3 { font-size: 1.35rem; }
 [x-cloak] { display: none !important; }
 .container { width: min(100% - 2rem, 76rem); margin-inline: auto; }
-.section { padding-block: clamp(4.5rem, 9vw, 8rem); }
+.section { padding-block: clamp(3rem, 5vw, 4.5rem); }
+.section h2 { margin-bottom: 1rem; }
 .section--tint { background: var(--mist); }
 .section--white { background: var(--paper); }
-.eyebrow { margin-bottom: 1rem; color: var(--teal); font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.eyebrow { margin-bottom: .75rem; color: var(--teal); font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .lede { max-width: 39rem; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.3rem); }
 .skip-link { position: fixed; z-index: 100; top: 1rem; left: 1rem; padding: .75rem 1rem; background: var(--navy); color: white; transform: translateY(-200%); }
 .skip-link:focus { transform: none; }

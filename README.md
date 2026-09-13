@@ -115,4 +115,9 @@ blocks to adopt the layouts; saved page content is not automatically replaced.
 
 ## Content status
 
+Typography follows the Vercel reference: Fraunces for display headings and doctor
+names; Inter for body copy, controls and small feature headings. Variable fonts
+are self-hosted through the Fontsource packages and Vite (unicode subsets, swap
+loading), including in the editor. Media-content headings remain capped at 3rem.
+
 Photography, logo, addresses, biographies, credentials and claims are placeholders until approved by The ENT Group.

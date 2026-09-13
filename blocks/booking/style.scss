@@ -1,6 +1,6 @@
 .ent-block--booking {
   background: var(--teal);
-  .booking__layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .booking__layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   .booking__copy { max-width: 30rem; }
   .booking__copy, .booking__copy h2, .booking__copy .lede, .booking__copy .eyebrow { color: white; }
   .booking__copy > p:not(.booking__feedback) { color: #ffffffe6; }

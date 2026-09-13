@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    margin-top: 3rem;
+    margin-top: 1.75rem;
   }
 
   .location { display: flex; flex-direction: column; min-width: 0; padding: 1.5rem; background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; transition: box-shadow .2s ease; }

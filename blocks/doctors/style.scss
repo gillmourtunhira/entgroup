@@ -1,5 +1,5 @@
 .ent-block--doctors {
-  .doctor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .doctor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.75rem; }
   .doctors__header { text-align: center; max-width: 44rem; margin-inline: auto; }
   .doctors__header h2, .doctors__header .lede { margin-inline: auto; }
   .doctors__header--split { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; max-width: none; text-align: left; }
@@ -14,7 +14,7 @@
   .doctor__placeholder { display: grid; gap: 1rem; justify-items: center; font-size: .85rem; }
   .doctor__placeholder i { font-size: 3rem; }
   .doctor__content { display: flex; flex-direction: column; flex: 1; padding: clamp(1.25rem, 3vw, 2rem); }
-  .doctor h3 { margin-bottom: .6rem; font-size: 1.3rem; }
+  .doctor h3 { margin-bottom: .6rem; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; }
   .doctor__role { color: var(--teal); font-size: .9rem; font-weight: 700; }
   .doctor__qualifications { padding-bottom: 1rem; border-bottom: 1px solid var(--line); font-size: .8rem; color: var(--muted); }
   .doctor__bio { color: var(--muted); font-size: .9rem; }

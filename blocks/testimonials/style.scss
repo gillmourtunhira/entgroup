@@ -1,13 +1,13 @@
 .ent-block--testimonials {
   background: var(--mist);
-  .stories__header { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .stories__header { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; margin-bottom: 1.5rem; }
   h2 { max-width: 24ch; margin: 0 auto; }
   .stories__controls { display: flex; flex-shrink: 0; gap: .65rem; }
   .stories__controls button { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--teal); font: inherit; font-size: 1.4rem; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
   .stories__controls button:hover:not(:disabled) { background: var(--teal); color: white; }
   .stories__controls button:disabled { opacity: .4; cursor: default; }
   .stories__track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3rem) / 3); gap: 1.5rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #a3c4be transparent; padding-block: .25rem 1.25rem; }
-  .stories__card { display: flex; flex-direction: column; min-width: 0; margin: 0; padding: clamp(1.5rem, 2.5vw, 2.25rem); border: 1px solid var(--line); border-radius: 1.25rem; background: var(--paper); box-shadow: 0 6px 20px #16353d04; scroll-snap-align: start; }
+  .stories__card { display: flex; flex-direction: column; min-width: 0; margin: 0; padding: 1.5rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--paper); box-shadow: 0 6px 20px #16353d04; scroll-snap-align: start; }
   .stories__quote-mark { color: #b3d5d1; font-size: 2rem; line-height: 1; }
   .stories__rating { display: flex; gap: .25rem; color: #b86b15; font-size: .85rem; margin-top: 1rem; }
   .stories__rating .is-unfilled { color: var(--line); }

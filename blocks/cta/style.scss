@@ -5,8 +5,8 @@
     text-align: center;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
-    padding: clamp(2rem, 6vw, 5rem);
+    gap: 1.5rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
     border-radius: 2rem;
     background: var(--teal);
   }
@@ -21,7 +21,7 @@
   .cta .cta__secondary { background: transparent; border: 1px solid #ffffff99; color: white; }
   .cta .cta__secondary:hover { background: #ffffff1a; }
   &.ent-cta--strip {
-    background: var(--teal); padding-block: clamp(3rem, 5vw, 4.5rem);
+    background: var(--teal); padding-block: clamp(2.5rem, 4vw, 3.5rem);
     .cta { flex-direction: row; text-align: left; padding: 0; border-radius: 0; }
     .cta h2 { max-width: 28ch; margin: .5rem 0 0; font-size: clamp(1.8rem, 3vw, 2.5rem); }
     .cta .eyebrow { margin: 0; }
